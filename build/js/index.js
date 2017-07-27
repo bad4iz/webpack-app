@@ -1,0 +1,1 @@
+webpackJsonp([0],[,function(n,e,o){"use strict";Object.defineProperty(e,"__esModule",{value:!0});var c=o(2),t=(o.n(c),o(3)),i=(o.n(t),o(0));const u=Object(i.a)(["Главная","Обо мне","Портфолио"],"menu");document.body.appendChild(u),console.log("in index.js")},function(n,e){},function(n,e){}],[1]);
