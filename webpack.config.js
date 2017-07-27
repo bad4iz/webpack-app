@@ -56,7 +56,7 @@ module.exports = (env) => {
         return merge([
             common,
             extractCSS(),
-            uglifyJS()
+            uglifyJS(),
             ]);
     }
     if (env === 'development') {
