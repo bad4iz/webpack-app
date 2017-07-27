@@ -5,11 +5,14 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack"
+    "start": "webpack -watch",
+    "serv": "static build"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "html-webpack-plugin": "^2.29.0",
+    "node-static": "^0.7.9",
     "webpack": "^3.4.1"
   }
 }
