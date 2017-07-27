@@ -12,6 +12,8 @@ const css = require('./webpack/css');
 
 const extractCSS = require('./webpack/css.extract');
 
+const uglifyJS = require('./webpack/js.uglify');
+
 const PATHS = {
     source: path.join(__dirname, 'source'),
     build: path.join(__dirname, 'build')
@@ -53,7 +55,8 @@ module.exports = (env) => {
     if (env === 'production') {
         return merge([
             common,
-            extractCSS()
+            extractCSS(),
+            uglifyJS()
             ]);
     }
     if (env === 'development') {
