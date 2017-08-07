@@ -16,6 +16,8 @@ const uglifyJS = require('./webpack/js.uglify');
 
 const images = require('./webpack/images');
 
+const babel = require('./webpack/babel');
+
 const PATHS = {
     source: path.join(__dirname, 'source'),
     build: path.join(__dirname, 'build')
@@ -30,27 +32,30 @@ const common = merge([
             'blog': PATHS.source + '/pages/blog/blog.js'
         },
         output: {
+            library: "rivg",
             path: PATHS.build,
             filename: 'js/[name].js'
         },
         plugins: [
             new HtmlWebpackPlugin({
                 filename: 'index.html',
-                chunks: ['index' , 'common'],
+                chunks: ['index', 'common'],
                 template: PATHS.source + '/pages/index/index.pug'
             }),
             new HtmlWebpackPlugin({
                 filename: 'blog.html',
                 chunks: ['blog', 'common'],
-                template: PATHS.source + '/pages/blog/blog.pug'
+                template: PATHS.source  + '/pages/blog/blog.pug'
             }),
             new webpack.optimize.CommonsChunkPlugin({
                 name: 'common'
-            })
+            }),
+
         ],
     },
     pug(),
-    images()
+    babel(),    
+    images(),
 ]);
 
 
@@ -59,17 +64,20 @@ module.exports = (env) => {
         return merge([
             common,
             extractCSS(),
+
             uglifyJS(),
-            ]);
+        ]);
     }
     if (env === 'development') {
         return merge([
             common,
+            {
+                devtool: 'source-map'
+            },
+
             devserver(),
             sass(),
             css()
         ])
     }
 };
-
-
